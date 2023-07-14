@@ -282,6 +282,7 @@ function Dashboard() {
               >
                 <DatePicker
                   dateRange={dateRange}
+                  iconColor="#B69056"
                   onChange={handleDateChange}
                   selectedDate={selectedDate}
                 />

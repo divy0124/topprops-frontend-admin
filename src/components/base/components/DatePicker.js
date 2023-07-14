@@ -15,19 +15,31 @@ dayjs.updateLocale('en', {
   weekStart: 1,
 });
 
-function DatePicker({ dateRange, selectedDate, className, onChange }) {
+function DatePicker({
+  dateRange,
+  selectedDate,
+  className,
+  onChange,
+  iconColor,
+}) {
   const [openPicker, setOpenPicker] = useState(false);
 
   return (
     <Col className={className}>
       <Row
-        className="border-1px br-2px border-primary-100 tp-date-picker"
+        className="border-1px br-2px border-primary-100 tp-date-picker date-picker"
         onClick={() => setOpenPicker(!openPicker)}
       >
-        <CalenderIcon />
-        <div className="text-medium mx-10">{dateRange[0]}</div>
+        {/* <BlurCalenderIcon /> */}
+        <CalenderIcon color={iconColor} />
+
+        <div className="text-medium mx-10 start-date">
+          {dateRange.length === 0 ? 'start date' : dateRange[0]}
+        </div>
         <SwapRightOutlined style={{ color: 'rgba(0, 0, 0, 0.25)' }} />
-        <div className="text-medium mx-10">{dateRange[1]}</div>
+        <div className="text-medium mx-10 end-date">
+          {dateRange.length === 0 ? 'end date' : dateRange[1]}
+        </div>
       </Row>
       <AntDatePicker.WeekPicker
         className="hide-date-picker-input"
@@ -52,6 +64,7 @@ DatePicker.propTypes = {
   dateRange: PropTypes.arrayOf(PropTypes.string).isRequired,
   onChange: PropTypes.func,
   selectedDate: PropTypes.objectOf(dayjs),
+  iconColor: PropTypes.string.isRequired,
 };
 
 export default DatePicker;
